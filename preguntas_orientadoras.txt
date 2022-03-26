@@ -2,6 +2,13 @@ Preguntas orientadoras
 
 1. Describa brevemente los diferentes perfiles de familias de microprocesadores/microcontroladores de ARM. Explique alguna de sus diferencias características.
 
+    1 - Los procesadores ARM Cortex se dividen en 3 grupos:
+
+        * Cortex A: Este grupo consiste en procesadores de alto rendimiento para uso de aplicaciones, como lo puede ser un Sistema Operativo. Su principal característica es que posee una Unidad de Manejo de Memoria (MMU), necesaria para correr Sistemas Operativos.
+
+        * Cortex R: Este grupo consiste en procesadores optimizados para el uso de Sistemas Operativos de Tiempo Real. Sus principales características consisten en añadidos para asegurar la operación de aplicaciones críticas y de tiempo real, como lo son: TCM, MPU y instrucciones de división a nivel de hardware.
+
+        * Cortex M: Este grupo consiste en procesadores de alto rendimiento diseñados para microcontroladores, FPGAs, SoCs y ASICs. Sus principales características son la optimización para bajo consumo, eficiencia energética, interrupciones de baja latencia, facilidad de uso, y en algunos procesadores del grupo poseen instrucciones DSP. 
 
 Cortex M
 
