@@ -27,6 +27,10 @@ Cortex M
 
 3. ¿Qué entiende por arquitectura load-store? ¿Qué tipo de instrucciones no posee este tipo de arquitectura?
 
+    3 - La arquitectura load-store se refiere a la arquitectura en la cual para operar sobre los datos primero se deben cargar de la memoria a un registro, ser procesados y luego ser escritos nuevamente en la memoria desde el registro usando distintas instrucciones.
+
+    Este tipo de arquitectura no posee instrucciones que operen directamente sobre los datos en memoria.
+
 4. ¿Cómo es el mapa de memoria de la familia?
 
 5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP?
