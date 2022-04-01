@@ -33,6 +33,16 @@ Cortex M
 
 4. ¿Cómo es el mapa de memoria de la familia?
 
+    4 - La memoria de 4GB está particionada en diferentes regiones, las cuales son:
+
+        - Región CODE.
+        - Región SRAM.
+        - Región de periféricos.
+        - Bus privado para periféricos.
+
+        Sin embargo, la aquitectura de la memoria permite que se usen distintas regiones de memoria para otros propósitos.
+        
+
 5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP?
 
 6. Describa los diferentes modos de privilegio y operación del Cortex M, sus relaciones y como se conmuta de uno al otro. Describa un ejemplo en el que se pasa del modo privilegiado a no priviligiado y nuevamente a privilegiado.
