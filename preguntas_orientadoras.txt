@@ -39,6 +39,8 @@ Cortex M
 
 7. ¿Qué se entiende por modelo de registros ortogonal? Dé un ejemplo
 
+    7 - Se entiende por un modelo donde los registros son de propósito general, esto quiere decir que las instrucciones pueden tomar cualquier registro independientemente de la instrucción.
+
 8. ¿Qué ventajas presenta el uso de intrucciones de ejecución condicional (IT)? Dé un ejemplo
 
 9. Describa brevemente las excepciones más prioritarias (reset, NMI, Hardfault).
