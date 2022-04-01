@@ -74,6 +74,8 @@ Cortex M
 
 20. ¿Qué funciones cumple la unidad de protección de memoria (MPU)?
 
+    20 - La MPU cumple la función de definir los accesos a varias regiones de memoria. En los procesadores Cortex-M3 y Cortex-M4 la MPU soporta ocho regiones de memoria, y puede ser usada con un SO embebido para brindar un sistema robusto. 
+
 21. ¿Cuántas regiones pueden configurarse como máximo? ¿Qué ocurre en caso de haber solapamientos de las regiones? ¿Qué ocurre con las zonas de memoria no cubiertas por las regiones definidas?
 
 22. ¿Para qué se suele utilizar la excepción PendSV? ¿Cómo se relaciona su uso con el resto de las excepciones? Dé un ejemplo
