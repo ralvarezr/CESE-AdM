@@ -86,6 +86,25 @@ void productoEscalar32 (uint32_t * vectorIn, uint32_t * vectorOut, uint32_t long
 	}
 }
 
+/* Ejercicio 3 */
+void productoEscalar16 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar)
+{
+	for(int i = 0; i < longitud; i++)
+	{
+		vectorOut[i] = vectorIn[i] * escalar;
+	}
+}
+
+/* Ejercicio 4 */
+void productoEscalar16 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar)
+{
+	for(int i = 0; i < longitud; i++)
+	{
+		vectorOut[i] = (vectorIn[i] * escalar) >> 4;
+	}
+}
+
+
 static void PrivilegiosSVC (void)
 {
     // Obtiene valor del registro de 32 bits del procesador llamado "control".
