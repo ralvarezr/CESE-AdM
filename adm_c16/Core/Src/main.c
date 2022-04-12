@@ -71,7 +71,7 @@ static void MX_USB_OTG_FS_PCD_Init(void);
 /* Ejercicio 1 */
 void zeros (uint32_t * vector, uint32_t longitud)
 {
-	for(int i = 0; i < longitud; i++)
+	for(uint32_t i = 0; i < longitud; i++)
 	{
 		vector[i] = 0;
 	}
@@ -80,7 +80,7 @@ void zeros (uint32_t * vector, uint32_t longitud)
 /* Ejercicio 2 */
 void productoEscalar32 (uint32_t * vectorIn, uint32_t * vectorOut, uint32_t longitud, uint32_t escalar)
 {
-	for(int i = 0; i < longitud; i++)
+	for(uint32_t i = 0; i < longitud; i++)
 	{
 		vectorOut[i] = vectorIn[i] * escalar;
 	}
@@ -89,7 +89,7 @@ void productoEscalar32 (uint32_t * vectorIn, uint32_t * vectorOut, uint32_t long
 /* Ejercicio 3 */
 void productoEscalar16 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar)
 {
-	for(int i = 0; i < longitud; i++)
+	for(uint32_t i = 0; i < longitud; i++)
 	{
 		vectorOut[i] = vectorIn[i] * escalar;
 	}
@@ -98,9 +98,10 @@ void productoEscalar16 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t long
 /* Ejercicio 4 */
 void productoEscalar16 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar)
 {
-	for(int i = 0; i < longitud; i++)
+	for(uint32_t i = 0; i < longitud; i++)
 	{
-		vectorOut[i] = (vectorIn[i] * escalar) >> 4;
+		vectorOut[i] = (vectorIn[i] * escalar);
+		vectorOut[i] &= 0x0FFF;
 	}
 }
 
