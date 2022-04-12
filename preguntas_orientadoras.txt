@@ -99,6 +99,8 @@ ISA
 
 1. ¿Qué son los sufijos y para qué se los utiliza? Dé un ejemplo
 
+    1 - Lo sufijos son letras que se agregan al final de una instrucción con el fin de realizar o una ejecución condicional o actualizar un flag de estado. Por ejemplo, el sufijo EQ hace que la instrucción se ejecute solo si el flag Z es igual a 1.
+
 2. ¿Para qué se utiliza el sufijo ‘s’? Dé un ejemplo
 
     2 - El sufijo 's' se utiliza para actualizar los flags asociados a la operación. Por ejemplo, la instrucción adds realizar la suma y luego actualiza las flags de los resultados de las operaciones aritméticas lógicas.
