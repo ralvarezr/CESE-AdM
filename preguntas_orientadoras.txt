@@ -97,34 +97,34 @@ Cortex M
 
 15. Cuando ocurre una interrupción, asumiendo que está habilitada ¿Cómo opera el microprocesador para atender a la subrutina correspondiente? Explique con un ejemplo
 
-17. ¿Cómo cambia la operación de stacking al utilizar la unidad de punto flotante?
+16. ¿Cómo cambia la operación de stacking al utilizar la unidad de punto flotante?
 
-18. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival.
+17. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival.
 
-    18 - 
+    17 - 
         * Tail chaining: Es una optimización que consiste en que cuando el procesador está ejecutando una excepción y recibe otra de igual o mayor prioridad, esta nueva excepción pasa a estado pendiente y se empieza a ejecutar una vez que haya terminado la ejecución de la excepción actual en vez de restaurar los registros desde el stack.
 
         * Late arrival: Es una optimización que consiste en detener la operación de stacking para atender una excepción de mayor prioridad en caso de que la excepción suceda durante el transcurso de la operación.
 
-19. ¿Qué es el systick? ¿Por qué puede afirmarse que su implementación favorece la portabilidad de los sistemas operativos embebidos?
+18. ¿Qué es el systick? ¿Por qué puede afirmarse que su implementación favorece la portabilidad de los sistemas operativos embebidos?
 
-    19 - El Systick es un periférico que se encuentra dentro de los procesadores Cortex-M3 y M4. Posee la función de ser un timer regular que es usado para las interrupciones de un Sistema Operativo. Al estar dentro de los procesadores, se puede asumir que siempre está presente, favoreciendo así a la portabilidad entre sistemas operativos embebidos.
+    18 - El Systick es un periférico que se encuentra dentro de los procesadores Cortex-M3 y M4. Posee la función de ser un timer regular que es usado para las interrupciones de un Sistema Operativo. Al estar dentro de los procesadores, se puede asumir que siempre está presente, favoreciendo así a la portabilidad entre sistemas operativos embebidos.
 
-20. ¿Qué funciones cumple la unidad de protección de memoria (MPU)?
+19. ¿Qué funciones cumple la unidad de protección de memoria (MPU)?
 
-    20 - La MPU cumple la función de definir los accesos a varias regiones de memoria.
+    19 - La MPU cumple la función de definir los accesos a varias regiones de memoria.
 
-21. ¿Cuántas regiones pueden configurarse como máximo? ¿Qué ocurre en caso de haber solapamientos de las regiones? ¿Qué ocurre con las zonas de memoria no cubiertas por las regiones definidas?
+20. ¿Cuántas regiones pueden configurarse como máximo? ¿Qué ocurre en caso de haber solapamientos de las regiones? ¿Qué ocurre con las zonas de memoria no cubiertas por las regiones definidas?
 
-    21 - En los procesadores Cortex-M3 y Cortex-M4 se pueden configurar hasta un máximo de ocho regiones.
+    20 - En los procesadores Cortex-M3 y Cortex-M4 se pueden configurar hasta un máximo de ocho regiones.
 
-22. ¿Para qué se suele utilizar la excepción PendSV? ¿Cómo se relaciona su uso con el resto de las excepciones? Dé un ejemplo
+21. ¿Para qué se suele utilizar la excepción PendSV? ¿Cómo se relaciona su uso con el resto de las excepciones? Dé un ejemplo
 
-    22 - Se utiliza para hacer un cambio de contexto. Esta excepción tiene un nivel de prioridad programable, por lo que al programarla con un nivel de prioridad bajo podemos asegurar que se va a ejecutar luego de que todas las interrupciones de más alta prioridad hayan sido ejecutadas.
+    21 - Se utiliza para hacer un cambio de contexto. Esta excepción tiene un nivel de prioridad programable, por lo que al programarla con un nivel de prioridad bajo podemos asegurar que se va a ejecutar luego de que todas las interrupciones de más alta prioridad hayan sido ejecutadas.
 
-23. ¿Para qué se suele utilizar la excepción SVC? Expliquelo dentro de un marco de un sistema operativo embebido.
+22. ¿Para qué se suele utilizar la excepción SVC? Expliquelo dentro de un marco de un sistema operativo embebido.
 
-    23 - Se utiliiza para cambiar de modo Thread a modo Handler. Cuando un OS inicia en Thread mode, puede usar la excepción SVC para entrar en modo Handler, para así crear el stack de una tarea y devolver el PSP.
+    22 - Se utiliiza para cambiar de modo Thread a modo Handler. Cuando un OS inicia en Thread mode, puede usar la excepción SVC para entrar en modo Handler, para así crear el stack de una tarea y devolver el PSP.
 
 
 ISA
