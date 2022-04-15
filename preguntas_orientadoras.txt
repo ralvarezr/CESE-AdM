@@ -76,6 +76,8 @@ Cortex M
 
 9. Describa brevemente las excepciones más prioritarias (reset, NMI, Hardfault).
 
+    9 - 
+
 10. Describa las funciones principales de la pila. ¿Cómo resuelve la arquitectura el llamado a funciones y su retorno?
 
 11. Describa la secuencia de reset del microprocesador.
@@ -98,6 +100,11 @@ Cortex M
 17. ¿Cómo cambia la operación de stacking al utilizar la unidad de punto flotante?
 
 18. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival.
+
+    18 - 
+        * Tail chaining: Es una optimización que consiste en que cuando el procesador está ejecutando una excepción y recibe otra de igual o mayor prioridad, esta nueva excepción pasa a estado pendiente y se empieza a ejecutar una vez que haya terminado la ejecución de la excepción actual en vez de restaurar los registros desde el stack.
+
+        * Late arrival: Es una optimización que consiste en detener la operación de stacking para atender una excepción de mayor prioridad en caso de que la excepción suceda durante el transcurso de la operación.
 
 19. ¿Qué es el systick? ¿Por qué puede afirmarse que su implementación favorece la portabilidad de los sistemas operativos embebidos?
 
