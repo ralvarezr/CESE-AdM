@@ -72,6 +72,8 @@ Cortex M
 
 8. ¿Qué ventajas presenta el uso de intrucciones de ejecución condicional (IT)? Dé un ejemplo
 
+    8 - El uso de instrucciones de ejecución condicional hace que el procesador no tenga que saltar a otra parte del programa, como lo haría con instrucciones con saltos incondicionales como un if, por lo que el pipeline de ejecución se preserva.
+
 9. Describa brevemente las excepciones más prioritarias (reset, NMI, Hardfault).
 
 10. Describa las funciones principales de la pila. ¿Cómo resuelve la arquitectura el llamado a funciones y su retorno?
