@@ -49,6 +49,8 @@ Cortex M
 
 6. Describa los diferentes modos de privilegio y operación del Cortex M, sus relaciones y como se conmuta de uno al otro. Describa un ejemplo en el que se pasa del modo privilegiado a no priviligiado y nuevamente a privilegiado.
 
+
+
 7. ¿Qué se entiende por modelo de registros ortogonal? Dé un ejemplo
 
     7 - Se entiende por un modelo donde los registros son de propósito general, esto quiere decir que las instrucciones pueden tomar cualquier registro independientemente de la instrucción.
@@ -94,7 +96,11 @@ Cortex M
 
 22. ¿Para qué se suele utilizar la excepción PendSV? ¿Cómo se relaciona su uso con el resto de las excepciones? Dé un ejemplo
 
+    22 - Se utiliza para hacer un cambio de contexto. Esta excepción tiene un nivel de prioridad programable, por lo que al programarla con un nivel de prioridad bajo podemos asegurar que se va a ejecutar luego de que todas las interrupciones de más alta prioridad hayan sido ejecutadas.
+
 23. ¿Para qué se suele utilizar la excepción SVC? Expliquelo dentro de un marco de un sistema operativo embebido.
+
+    23 - Se utiliiza para cambiar de modo Thread a modo Handler. Cuando un OS inicia en Thread mode, puede usar la excepción SVC para entrar en modo Handler, para así crear el stack de una tarea y devolver el PSP.
 
 
 ISA
