@@ -45,6 +45,8 @@ Cortex M
 
 5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP?
 
+    5 - En sistemas operativos embebidos o RTOS los handlers de excepciones usan el MSP y las tareas usan el PSP.  Esto trae ventajas como la facilidad de crear sistemas operativos eficientes; en caso de corrupción del stack de una tarea, el stack del kernel del OS queda intacto; y permite el uso de la MPU para definir el stack a usar por una tarea. 
+
 6. Describa los diferentes modos de privilegio y operación del Cortex M, sus relaciones y como se conmuta de uno al otro. Describa un ejemplo en el que se pasa del modo privilegiado a no priviligiado y nuevamente a privilegiado.
 
 7. ¿Qué se entiende por modelo de registros ortogonal? Dé un ejemplo
