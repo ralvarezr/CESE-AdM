@@ -78,6 +78,12 @@ Cortex M
 
     9 - 
 
+        * Reset: Es la excepción que se ejecuta cuando se reinicia el procesador.
+
+        * NMI: Esta interrupción no puede ser deshabilitada, y se dispara cuando ocurre un error en otro handler de excepción.
+
+        * Hardfault: Esta excepción es para todo tipo de fallas, se dispara cuando el handler correspondiente a la falla no puede ser activado porque fue previamente deshabilitado.
+
 10. Describa las funciones principales de la pila. ¿Cómo resuelve la arquitectura el llamado a funciones y su retorno?
 
 11. Describa la secuencia de reset del microprocesador.
