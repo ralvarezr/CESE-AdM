@@ -100,7 +100,15 @@
 @
 .thumb_func
 	asm_productoEscalar16:
-		bx lr
+		push {r4-r5}					@ guardo r4 y r5 en el stack para usarlos.
+	.asm_productoEscalar16_for:			@ etiqueta del loop.
+		ldrh r4, [r0], #2				@ r4 = *r0; r0 +=4;
+		mul r5, r4, r3 					@ r5 = r4 * r3;
+		strh r5, [r1], #2				@ *r1 = r5; r1 += 4
+		subs r2, 1						@ r2 -= 1;
+		bne .asm_productoEscalar16_for	@ salto a la etiqueta si el resultado no es 0.
+		pop {r4-r5}						@ restauro el valor de r4.
+		bx lr							@ salgo de la función.
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

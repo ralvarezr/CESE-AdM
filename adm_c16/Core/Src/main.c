@@ -233,7 +233,6 @@ int main(void)
   c = DWT->CYCCNT;
 
   }
-
   /* FIN PRUEBA EJERCICIO 1 */
 
   /* INICIO PRUEBA EJERCICIO 2 */
@@ -259,8 +258,32 @@ int main(void)
   c = DWT->CYCCNT;
 
   }
-
   /* FIN PRUEBA EJERCICIO 2 */
+
+  /* INICIO PRUEBA EJERCICIO 3 */
+  {
+
+  uint16_t vectorIn16[MAX_VECTOR] = {1, 2};
+  uint16_t vectorOut16[MAX_VECTOR];
+  uint16_t escalar = 2;
+
+  DWT->CYCCNT = 0;
+
+  productoEscalar16(vectorIn16, vectorOut16, MAX_VECTOR, escalar);
+
+  c = DWT->CYCCNT;
+
+  vectorOut16[0] = 0;
+  vectorOut16[1] = 0;
+
+  DWT->CYCCNT = 0;
+
+  asm_productoEscalar16(vectorIn16, vectorOut16, MAX_VECTOR, escalar);
+
+  c = DWT->CYCCNT;
+
+  }
+  /* FIN PRUEBA EJERCICIO 3 */
 
   /* USER CODE END 2 */
 
