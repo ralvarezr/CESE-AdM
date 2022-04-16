@@ -98,6 +98,8 @@ Cortex M
 
 13. ¿Cómo se implementan las prioridades de las interrupciones? Dé un ejemplo
 
+    13 - Las mayoría de las interrupciones son configurables. Los niveles de prioridad van desde el número más bajo hasta el número más alto, siendo el número más bajo el de mayor prioridad. Por ejemplo, las prioridades de Reset, NMI, y Hard Fault tienen la prioridad -3, -2 y -1 respectivamente, indicando que son las de mayor prioridad y que no son configurables, en cambio, las excepciones MemManage Fault, Bus Fault, etc, tienen prioridades programables, las cuales se pueden configurar con números desde el 0 en adelante.
+
 14. ¿Qué es el CMSIS? ¿Qué función cumple? ¿Quién lo provee? ¿Qué ventajas aporta?
 
     14 - El CMSIS es una capa de abstracción independiente del fabricante que provee una interfaz hacia el procesador, los periféricos, sistemas operativos de tiempo de real y componentes del middleware. 
