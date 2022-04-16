@@ -113,6 +113,8 @@ Cortex M
 
 16. ¿Cómo cambia la operación de stacking al utilizar la unidad de punto flotante?
 
+    16 - Al utilizar la unidad de punto flotante la operación de stacking pasa a ser "lazy stacking", lo que hace que el mecanismo de stacking reserve el espacio del stack para los registros de la unidad de punto flotante, pero no les hará un push al stack hasta que realmente los necesite.
+
 17. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival.
 
     17 - 
