@@ -70,7 +70,7 @@ Cortex M
 
     7 - Se entiende por un modelo donde los registros son de propósito general, esto quiere decir que las instrucciones pueden tomar cualquier registro independientemente de la instrucción.
 
-8. ¿Qué ventajas presenta el uso de intrucciones de ejecución condicional (IT)? Dé un ejemplo
+8. ¿Qué ventajas presenta el uso de instrucciones de ejecución condicional (IT)? Dé un ejemplo
 
     8 - El uso de instrucciones de ejecución condicional hace que el procesador no tenga que saltar a otra parte del programa, como lo haría con instrucciones con saltos incondicionales como un if, por lo que el pipeline de ejecución se preserva.
 
