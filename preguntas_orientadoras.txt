@@ -155,6 +155,8 @@ ISA
 
 3. ¿Qué utilidad tiene la implementación de instrucciones de aritmética saturada? Dé un ejemplo con operaciones con datos de 8 bits.
 
+    3 - Las instrucciones de aritmética saturada previenen una distorsión masiva de los resultados calculados cuando ocurre un desbordamiento. 
+
 4. Describa brevemente la interfaz entre assembler y C ¿Cómo se reciben los argumentos de las funciones? ¿Cómo se devuelve el resultado? ¿Qué registros deben guardarse en la pila antes de ser modificados?
 
     4 - La interfaz entre assembler y C se realiza mediante el uso de los registros r0, r1, r2, r3, independientemente de la cantidad de parámetros que tenga la función en C. El resultado de la función se devuelve en el registro r0.
