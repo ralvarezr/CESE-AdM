@@ -86,7 +86,11 @@ Cortex M
 
 10. Describa las funciones principales de la pila. ¿Cómo resuelve la arquitectura el llamado a funciones y su retorno?
 
+    10 - Cuando una función o subrutina es llamada, la dirección de retorno es guardada automáticamente en el registro Link Register (LR), de esta manera, al finaliza la función, el valor de LR es cargado en el Program Counter (PC), retornando así a la dirección donde se había llamado la función.
+
 11. Describa la secuencia de reset del microprocesador.
+
+    11 - Luego de la señal de reset y antes que el procesador inicie la ejecución del programa, el procesador lee las dos primeras palabras en memoria (dirección 0x00000000), las cuales contienen el valor inicial del Main Stack Pointer (MSP) y el vector de reset. Luego de que las dos palabras hayan sido leídas por el procesador, el procesador escribe en el MSP y el PC los valores leídos.
 
 12. ¿Qué entiende por “core peripherals”? ¿Qué diferencia existe entre estos y el resto de los periféricos?
 
