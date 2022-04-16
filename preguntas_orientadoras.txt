@@ -109,6 +109,8 @@ Cortex M
 
 15. Cuando ocurre una interrupción, asumiendo que está habilitada ¿Cómo opera el microprocesador para atender a la subrutina correspondiente? Explique con un ejemplo
 
+    15 - En principio se realiza la secuencia de entrada a la interrupción, en donde automáticamente se hace un push de un cierto número de registros al stack, esto es conocido como Stacking. Mientras tanto, la dirección de inicio de la interrupción es buscada en la tabla de vectores. Una vez que el servicio de interrupción es completado, el procesador lleva a cabo un retorno de excepción. Los registros que fueron llevados al stack son restaurados y el programa interrumpido es resumido.
+
 16. ¿Cómo cambia la operación de stacking al utilizar la unidad de punto flotante?
 
 17. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival.
