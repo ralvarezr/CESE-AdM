@@ -36,7 +36,7 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+#define MAX_VECTOR 2
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -69,7 +69,7 @@ static void MX_USB_OTG_FS_PCD_Init(void);
 /* USER CODE BEGIN 0 */
 
 /* Ejercicio 1 */
-void zeros (uint32_t * vector, uint32_t longitud)
+void zeros(uint32_t * vector, uint32_t longitud)
 {
 	for(uint32_t i = 0; i < longitud; i++)
 	{
@@ -78,7 +78,7 @@ void zeros (uint32_t * vector, uint32_t longitud)
 }
 
 /* Ejercicio 2 */
-void productoEscalar32 (uint32_t * vectorIn, uint32_t * vectorOut, uint32_t longitud, uint32_t escalar)
+void productoEscalar32(uint32_t * vectorIn, uint32_t * vectorOut, uint32_t longitud, uint32_t escalar)
 {
 	for(uint32_t i = 0; i < longitud; i++)
 	{
@@ -87,7 +87,7 @@ void productoEscalar32 (uint32_t * vectorIn, uint32_t * vectorOut, uint32_t long
 }
 
 /* Ejercicio 3 */
-void productoEscalar16 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar)
+void productoEscalar16(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar)
 {
 	for(uint32_t i = 0; i < longitud; i++)
 	{
@@ -96,12 +96,17 @@ void productoEscalar16 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t long
 }
 
 /* Ejercicio 4 */
-void productoEscalar12 (uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar)
+void productoEscalar12(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar)
 {
 	for(uint32_t i = 0; i < longitud; i++)
 	{
 		vectorOut[i] = (vectorIn[i] * escalar);
-		vectorOut[i] &= 0x0FFF;
+		if(vectorOut[i] > 0x0FFF)
+		{
+
+			vectorOut[i] = 0x0FFF;
+		}
+
 	}
 }
 
@@ -189,14 +194,74 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
+
   MX_GPIO_Init();
   MX_ETH_Init();
   MX_USART3_UART_Init();
   MX_USB_OTG_FS_PCD_Init();
+
   /* USER CODE BEGIN 2 */
+
   PrivilegiosSVC ();
 
-  const uint32_t Resultado = asm_sum (5, 3);
+  //const uint32_t Resultado = asm_sum (5, 3);
+
+  /* Guia de ejercicios */
+
+
+  DWT->CTRL |= 1 << DWT_CTRL_CYCCNTENA_Pos;					//Inicio el contador de ciclos.
+  volatile uint32_t c = 0u;									//Variable para almacenar los ciclos.
+
+  /* INICIO PRUEBA EJERCICIO 1 */
+  {
+
+  uint32_t vectorIn32[MAX_VECTOR];
+
+  DWT->CYCCNT = 0;
+
+  zeros(vectorIn32, MAX_VECTOR);
+
+  c = DWT->CYCCNT;
+
+  vectorIn32[0] = 1;
+  vectorIn32[1] = 2;
+
+  DWT->CYCCNT = 0;
+
+  asm_zeros(vectorIn32, MAX_VECTOR);
+
+  c = DWT->CYCCNT;
+
+  }
+
+  /* FIN PRUEBA EJERCICIO 1 */
+
+  /* INICIO PRUEBA EJERCICIO 2 */
+  {
+
+  uint32_t vectorIn32[MAX_VECTOR] = {1, 2};
+  uint32_t vectorOut32[MAX_VECTOR];
+  uint32_t escalar = 2;
+
+  DWT->CYCCNT = 0;
+
+  productoEscalar32(vectorIn32, vectorOut32, MAX_VECTOR, escalar);
+
+  c = DWT->CYCCNT;
+
+  vectorOut32[0] = 0;
+  vectorOut32[1] = 0;
+
+  DWT->CYCCNT = 0;
+
+  asm_productoEscalar32(vectorIn32, vectorOut32, MAX_VECTOR, escalar);
+
+  c = DWT->CYCCNT;
+
+  }
+
+  /* FIN PRUEBA EJERCICIO 2 */
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
