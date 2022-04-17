@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "string.h"
+#include <limits.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -110,6 +111,49 @@ void productoEscalar12(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longi
 	}
 }
 
+/* Ejercicio 5 */
+void filtroVentana10(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitudVectorIn)
+{
+
+}
+
+
+/* Ejercicio 6 */
+void pack32to16 (int32_t * vectorIn, int16_t *vectorOut, uint32_t longitud)
+{
+
+}
+
+/* Ejercicio 7 */
+int32_t max (int32_t * vectorIn, uint32_t longitud)
+{
+	int32_t posicion_max = 0;
+	int32_t max = INT_MIN;
+
+	for(uint32_t i = 0; i < longitud; i++)
+	{
+		if(vectorIn[i] > max)
+		{
+			posicion_max = i;
+			max = vectorIn[i];
+		}
+
+	}
+
+	return posicion_max;
+}
+
+/* Ejercicio 8 */
+void downsampleM (int32_t * vectorIn, int32_t * vectorOut, uint32_t longitud, uint32_t N)
+{
+
+}
+
+/* Ejercicio 9 */
+void invertir (uint16_t * vector, uint32_t longitud)
+{
+
+}
 
 static void PrivilegiosSVC (void)
 {
@@ -309,6 +353,27 @@ int main(void)
 
   }
   /* FIN PRUEBA EJERCICIO 4 */
+
+
+  /* INICIO PRUEBA EJERCICIO 7 */
+  {
+
+  int32_t vectorIn32[5] = {-10000, -50, -25, -25, -3};
+
+  DWT->CYCCNT = 0;
+
+  int32_t pos_max = max(vectorIn32, 5);
+
+  c = DWT->CYCCNT;
+
+ // DWT->CYCCNT = 0;
+
+  //asm_productoEscalar12(vectorIn16, vectorOut16, MAX_VECTOR, escalar);
+
+ // c = DWT->CYCCNT;
+
+  }
+  /* FIN PRUEBA EJERCICIO 7 */
 
   /* USER CODE END 2 */
 
