@@ -144,9 +144,24 @@ int32_t max (int32_t * vectorIn, uint32_t longitud)
 }
 
 /* Ejercicio 8 */
-void downsampleM (int32_t * vectorIn, int32_t * vectorOut, uint32_t longitud, uint32_t N)
+void downsampleM(int32_t * vectorIn, int32_t * vectorOut, uint32_t longitud, uint32_t N)
 {
+	uint32_t contador = 0;
+	uint32_t j = 0;
 
+	for(uint32_t i = 0; i < longitud; i++)
+	{
+		if(contador != N)
+		{
+			vectorOut[j] = vectorIn[i];
+			contador++;
+			j++;
+		}
+		else
+		{
+			contador = 0;
+		}
+	}
 }
 
 /* Ejercicio 9 */
@@ -373,6 +388,26 @@ int main(void)
 
   }
   /* FIN PRUEBA EJERCICIO 7 */
+
+  /* INICIO PRUEBA EJERCICIO 8 */
+  {
+
+  int32_t vectorIn32[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+  int32_t vectorOut32[10] = {0};
+  DWT->CYCCNT = 0;
+
+  downsampleM(vectorIn32, vectorOut32, 10, 3);
+
+  c = DWT->CYCCNT;
+
+  DWT->CYCCNT = 0;
+
+ // int32_t asm_pos_max = asm_max(vectorIn32, 5);
+
+  c = DWT->CYCCNT;
+
+  }
+  /* FIN PRUEBA EJERCICIO 8 */
 
   /* USER CODE END 2 */
 

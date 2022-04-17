@@ -12,6 +12,7 @@
 
 
 .global asm_max
+.global asm_downsampleM
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
@@ -170,3 +171,17 @@
 		mov r4, r5				@ guardo el valor de la posición máxima en r4. r4 = r5;
 		b .no_seleccionar_max	@ continúo con el resto del código.
 
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@ void asm_downsampleM(int32_t * vectorIn, int32_t * vectorOut, uint32_t longitud, uint32_t N);
+@
+@ Parametros recibidos:
+@   r0: vectorIn
+@   r1: vectorOut
+@ 	r2: longitud
+@	r3: N
+@
+.thumb_func
+	asm_downSampleM:
+		bx lr					@ salgo de la función.
