@@ -18,4 +18,4 @@ void asm_productoEscalar32(uint32_t * vectorIn, uint32_t * vectorOut, uint32_t l
 void asm_productoEscalar16(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar);
 
 /* Ejercicio 4 */
-void productoEscalar12(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar);
+void asm_productoEscalar12(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitud, uint16_t escalar);

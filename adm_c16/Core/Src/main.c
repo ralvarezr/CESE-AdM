@@ -285,6 +285,31 @@ int main(void)
   }
   /* FIN PRUEBA EJERCICIO 3 */
 
+  /* INICIO PRUEBA EJERCICIO 4 */
+  {
+
+  uint16_t vectorIn16[MAX_VECTOR] = {1, 2};
+  uint16_t vectorOut16[MAX_VECTOR];
+  uint16_t escalar = 4000;
+
+  DWT->CYCCNT = 0;
+
+  productoEscalar12(vectorIn16, vectorOut16, MAX_VECTOR, escalar);
+
+  c = DWT->CYCCNT;
+
+  vectorOut16[0] = 0;
+  vectorOut16[1] = 0;
+
+  DWT->CYCCNT = 0;
+
+  asm_productoEscalar12(vectorIn16, vectorOut16, MAX_VECTOR, escalar);
+
+  c = DWT->CYCCNT;
+
+  }
+  /* FIN PRUEBA EJERCICIO 4 */
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
