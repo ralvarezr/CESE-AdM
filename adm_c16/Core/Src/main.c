@@ -358,19 +358,18 @@ int main(void)
   /* INICIO PRUEBA EJERCICIO 7 */
   {
 
-  int32_t vectorIn32[5] = {-10000, -50, -25, -25, -3};
-
+  int32_t vectorIn32[5] = {-10000, -50, 50, -25, -3};
   DWT->CYCCNT = 0;
 
   int32_t pos_max = max(vectorIn32, 5);
 
   c = DWT->CYCCNT;
 
- // DWT->CYCCNT = 0;
+  DWT->CYCCNT = 0;
 
-  //asm_productoEscalar12(vectorIn16, vectorOut16, MAX_VECTOR, escalar);
+  int32_t asm_pos_max = asm_max(vectorIn32, 5);
 
- // c = DWT->CYCCNT;
+  c = DWT->CYCCNT;
 
   }
   /* FIN PRUEBA EJERCICIO 7 */
