@@ -400,9 +400,13 @@ int main(void)
 
   c = DWT->CYCCNT;
 
+
+  int32_t asm_vectorIn32[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+  int32_t asm_vectorOut32[10] = {0};
+
   DWT->CYCCNT = 0;
 
- // int32_t asm_pos_max = asm_max(vectorIn32, 5);
+  asm_downsampleM(asm_vectorIn32, asm_vectorOut32, 10, 3);
 
   c = DWT->CYCCNT;
 

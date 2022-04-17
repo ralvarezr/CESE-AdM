@@ -154,10 +154,11 @@
 		mov r5, #0				@ *r5 = 0;
 	.asm_max_loop:				@ etiqueta del loop.
 		ldr r3, [r0], #4		@ r3 = *r0; r0 +=4;
-		cmp r3, r2				@ comparo r3 con r2.
-		bgt .seleccionar_max	@ si la comparación resulta en Z = 0, N = V, voy a la etiqueta. (Mayor que).
-
-
+		cmp r2, r3				@ comparo r2 con r3.
+		bgt .no_seleccionar_max	@ si la comparación resulta en Z = 0, N = V, voy a la etiqueta.
+	.seleccionar_max:
+		mov r2, r3				@ guardo el valor máximo en r2. r2 = r3;
+		mov r4, r5				@ guardo el valor de la posición máxima en r4. r4 = r5;
 	.no_seleccionar_max:
 		add r5, #1				@ *r5 += 1;
 		subs r1, #1				@ r1 -= 1;
@@ -166,10 +167,6 @@
 		pop {r4-r5}				@ restauro el valor de r4 y r5.
 		bx lr					@ salgo de la función.
 
-	.seleccionar_max:
-		mov r2, r3				@ guardo el valor máximo en r2. r2 = r3;
-		mov r4, r5				@ guardo el valor de la posición máxima en r4. r4 = r5;
-		b .no_seleccionar_max	@ continúo con el resto del código.
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -183,5 +180,22 @@
 @	r3: N
 @
 .thumb_func
-	asm_downSampleM:
-		bx lr					@ salgo de la función.
+	asm_downsampleM:
+		push {r4-r5}					@ guardo r4 y r5 en el stack para usarlos.
+		mov r5, #0						@ r5 = 0;
+	.asm_downSampleM_for:				@ etiqueta del loop.
+		cmp r5, r3						@ comparo r5 y r3.
+
+		ittte ne						@ If-Then, Si no son iguales se guarda el valor de en vectorOut, sino se guarda 0 en r5.
+		ldrne r4, [r0]					@ r4 = *r0; r0 +=4;
+		strne r4, [r1], #4				@ *r1 = r4; r1 += 4;
+		addne r5, #1					@ r5 += 1;
+		moveq r5, #0					@ r5 = 0;
+
+		add r0, #4						@ r0 += 4;
+		subs r2, #1						@ r2 -= 1;
+		bne .asm_downSampleM_for		@ salto a la etiqueta si el resultado no es 0.
+
+		pop {r4-r5}						@ restauro el valor de r4.
+		bx lr							@ salgo de la función.
+
