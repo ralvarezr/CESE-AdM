@@ -427,19 +427,19 @@ int main(void)
   /* INICIO PRUEBA EJERCICIO 9 */
   {
 
-  uint16_t vector[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+  uint16_t vector[9] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
 
   DWT->CYCCNT = 0;
 
-  invertir(vector, 10);
+  invertir(vector, 9);
 
   c = DWT->CYCCNT;
 
-  uint16_t asm_vector[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+  uint16_t asm_vector[9] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
 
   DWT->CYCCNT = 0;
 
-  asm_invertir(asm_vector, 10);
+  asm_invertir(asm_vector, 9);
 
   c = DWT->CYCCNT;
 

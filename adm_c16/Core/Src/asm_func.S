@@ -208,6 +208,31 @@
 @   r0: vector
 @   r1: longitud
 @
+@ Registros usados:
+@	r2: aux
+@	r3: dirección de memoria del final del vector.
+@	r4: mitad del vector.
+@	r5: cantidad que hay que sumar a la dirección de memoria para llegar al final del vector.
+@	r6: cantidad de bytes en una media palabra.
+@	r7: aux2
 .thumb_func
 	asm_invertir:
-		bx lr
+		push {r4-r7}					@ guardo r4, r5, r6 y r7 en el stack para usarlo.
+		mov r3, r0						@ guardo el inicio del vector en r3.
+		asr r4, r1, #1					@ r4 = r1 >> 1; Divide en 2 r1.
+		mov	r6, #2						@ r6 = 2;
+		sub r1, #1						@ r1 -= 1;
+		mul r5, r6, r1					@ r5 = 2*longitud;
+		add r3, r5						@ r3 += r5; En r3 queda la dirección de memoria del final del vector.
+
+	.asm_invertir_loop:
+		ldrh r2, [r0]					@ r2 = *r0;
+		ldrh r7, [r3]					@ r7 = *r3;
+		strh r2, [r3], #-2				@ *r3 = r2; r3 -= 4;
+		strh r7, [r0], #2				@ *r0 = r7; r0 += 4;
+
+		subs r4, #1						@ r4 -= 1;
+		bne .asm_invertir_loop			@ salto a la etiqueta si el resultado no es 0.
+
+		pop {r4-r7}						@ restauro el valor de r4, r5, r6 y r7.
+		bx lr							@ salgo de la función.
