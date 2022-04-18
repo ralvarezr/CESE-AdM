@@ -167,7 +167,18 @@ void downsampleM(int32_t * vectorIn, int32_t * vectorOut, uint32_t longitud, uin
 /* Ejercicio 9 */
 void invertir (uint16_t * vector, uint32_t longitud)
 {
+	uint16_t aux;
+	uint32_t i = 0;
+	uint32_t j = longitud - 1;
 
+	while(i < longitud/2)
+	{
+		aux = vector[j];
+		vector[j] = vector[i];
+		vector[i] = aux;
+		i++;
+		j--;
+	}
 }
 
 static void PrivilegiosSVC (void)
@@ -269,7 +280,7 @@ int main(void)
 
 
   DWT->CTRL |= 1 << DWT_CTRL_CYCCNTENA_Pos;					//Inicio el contador de ciclos.
-  volatile uint32_t c = 0u;									//Variable para almacenar los ciclos.
+  volatile uint32_t c = 0;									//Variable para almacenar los ciclos.
 
   /* INICIO PRUEBA EJERCICIO 1 */
   {
@@ -412,6 +423,28 @@ int main(void)
 
   }
   /* FIN PRUEBA EJERCICIO 8 */
+
+  /* INICIO PRUEBA EJERCICIO 9 */
+  {
+
+  uint16_t vector[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+  DWT->CYCCNT = 0;
+
+  invertir(vector, 10);
+
+  c = DWT->CYCCNT;
+
+  uint16_t asm_vector[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+  DWT->CYCCNT = 0;
+
+  asm_invertir(asm_vector, 10);
+
+  c = DWT->CYCCNT;
+
+  }
+  /* FIN PRUEBA EJERCICIO 9 */
 
   /* USER CODE END 2 */
 

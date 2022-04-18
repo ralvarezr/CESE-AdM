@@ -13,6 +13,7 @@
 
 .global asm_max
 .global asm_downsampleM
+.global asm_invertir
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
@@ -199,3 +200,14 @@
 		pop {r4-r5}						@ restauro el valor de r4.
 		bx lr							@ salgo de la función.
 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@ void asm_invertir (uint16_t * vector, uint32_t longitud);
+@
+@ Parametros recibidos:
+@   r0: vector
+@   r1: longitud
+@
+.thumb_func
+	asm_invertir:
+		bx lr
