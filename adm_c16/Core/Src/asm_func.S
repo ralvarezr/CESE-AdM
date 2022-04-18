@@ -136,7 +136,7 @@
 		strh r5, [r1], #2				@ *r1 = r5; r1 += 2
 		subs r2, 1						@ r2 -= 1;
 		bne .asm_productoEscalar12_for	@ salto a la etiqueta si el resultado no es 0.
-		pop {r4-r5}						@ restauro el valor de r4.
+		pop {r4-r5}						@ restauro el valor de r4 y r5.
 		bx lr							@ salgo de la función.
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -148,9 +148,56 @@
 @   r1: vectorOut
 @	r2: longitudVectorIn
 @
+@ Registros usados:
+@ 	r3: promedio.
+@	r4: n_filtro.
+@	r5: sumatoria.
+@ 	r6: dirección de memoria del final de vectorIn.
+@ 	r7: dirección de memoria inicial del vectorIn.
+@	r8: iterador sobre n_filtro.
+@	r9: aux
+@
 .thumb_func
 	asm_filtroVentana10:
-		bx lr					@ salgo de la función.
+		push {r4-r9}							@ guardo los valores de r4, r5, r6, r7, r8 y r9 para usarlos.
+
+		mov	r3, #2								@ r3 = 2;
+		mul r5, r3, r2							@ r5 = 2*longitud;
+		add r6, r0, r5 							@ r6 = r0 + r5; En r6 queda la dirección de memoria del final del vector.
+
+		mov r4, #10								@ r4 = 10;
+		mov r5, #0								@ r5 = 0;
+		mov r7, r0								@ r7 = r0; Perservo la dirección de memoria inicial del vector.
+		mov r8, r4								@ r8 = 10;
+
+	.asm_filtroVentana10_loop_externo:
+
+
+		.asm_filtroVentana10_loop_interno:
+
+			cmp r0, r6								@ comparo si se llegó a sobrepasar el vector.
+
+			ite mi
+			ldrhmi r9, [r0]							@ si r6 >= r0, r9 = *r0;
+			movpl r9, #0							@ si r6 < r0, r9 = 0;
+
+			add r5, r9								@ r5 += r9 //sumatoria += vectorIn[i]
+			add r0, #2
+
+			subs r8, #1								@ r8 -= 1;
+			bne .asm_filtroVentana10_loop_interno
+
+		udiv r3, r5, r4							@ r3 = r5 / r4; //promedio = sumatoria / n_filtro;
+		strh r3, [r1], #2						@ *r1 = r3; r1 += 4; //Guardo el promedio el vectorOut[i].
+		mov r5, #0								@ r5 = 0; //Limpio el registro de sumatoria.
+		add r7, #2								@ r0 += 2; //Avanzo dos espacios r7.
+		mov r0, r7								@ r0 = r7;
+		mov r8, #10								@ r8 = 10; //Restauro el valor de r8 para volver a iterar.
+		subs r2, #1								@ r2 -= 1;
+		bne .asm_filtroVentana10_loop_externo
+
+		pop {r4-r9}								@ restauro el valor de r4, r5, r6, r7, r8 y r9.
+		bx lr									@ salgo de la función.
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

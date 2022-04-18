@@ -121,7 +121,7 @@ void filtroVentana10(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitu
 	uint16_t sum = 0;
 	uint32_t h = 0;
 
-	//Loop para vectorOut.
+	//Loop para guardar los datos en vectorOut.
 	for(uint32_t i = 0; i < longitudVectorIn; i++)
 	{
 
@@ -410,6 +410,8 @@ int main(void)
   /* INICIO PRUEBA EJERCICIO 5 */
   {
 
+
+
   uint16_t vectorIn16[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
   uint16_t vectorOut16[10];
 
@@ -420,11 +422,11 @@ int main(void)
 
   c = DWT->CYCCNT;
 
- // uint16_t asm_vectorOut16[10];
+  uint16_t asm_vectorOut16[10];
 
   DWT->CYCCNT = 0;
 
- // asm_filtroVentana10(vectorIn16, asm_vectorOut16, 10);
+  asm_filtroVentana10(vectorIn16, asm_vectorOut16, 10);
 
   c = DWT->CYCCNT;
 
