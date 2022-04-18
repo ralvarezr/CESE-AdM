@@ -107,7 +107,6 @@ void productoEscalar12(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longi
 
 			vectorOut[i] = 0x0FFF;
 		}
-
 	}
 }
 
@@ -115,6 +114,34 @@ void productoEscalar12(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longi
 void filtroVentana10(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitudVectorIn)
 {
 
+
+
+	uint16_t promedio = 0;
+	uint32_t n_filtro = 10; 
+	uint16_t sum = 0;
+	uint32_t h = 0;
+
+	//Loop para vectorOut.
+	for(uint32_t i = 0; i < longitudVectorIn; i++)
+	{
+
+		//Loop para iterar sobre vectorIn n_filtro veces.
+		for(uint32_t j = 0; j < n_filtro; j++)
+		{
+			h = i + j;
+			if(h >= longitudVectorIn)
+			{
+				sum += 0;
+			}else{
+				sum += vectorIn[h];
+			}
+
+		}
+
+		promedio = sum / n_filtro;
+		vectorOut[i] = promedio;
+		sum = 0;
+	}
 }
 
 
@@ -380,6 +407,29 @@ int main(void)
   }
   /* FIN PRUEBA EJERCICIO 4 */
 
+  /* INICIO PRUEBA EJERCICIO 5 */
+  {
+
+  uint16_t vectorIn16[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+  uint16_t vectorOut16[10];
+
+
+  DWT->CYCCNT = 0;
+
+  filtroVentana10(vectorIn16, vectorOut16, 10);
+
+  c = DWT->CYCCNT;
+
+ // uint16_t asm_vectorOut16[10];
+
+  DWT->CYCCNT = 0;
+
+ // asm_filtroVentana10(vectorIn16, asm_vectorOut16, 10);
+
+  c = DWT->CYCCNT;
+
+  }
+  /* FIN PRUEBA EJERCICIO 5 */
 
   /* INICIO PRUEBA EJERCICIO 7 */
   {
@@ -427,19 +477,19 @@ int main(void)
   /* INICIO PRUEBA EJERCICIO 9 */
   {
 
-  uint16_t vector[9] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+  uint16_t vector[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
   DWT->CYCCNT = 0;
 
-  invertir(vector, 9);
+  invertir(vector, 10);
 
   c = DWT->CYCCNT;
 
-  uint16_t asm_vector[9] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+  uint16_t asm_vector[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
   DWT->CYCCNT = 0;
 
-  asm_invertir(asm_vector, 9);
+  asm_invertir(asm_vector, 10);
 
   c = DWT->CYCCNT;
 

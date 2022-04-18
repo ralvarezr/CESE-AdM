@@ -9,7 +9,7 @@
 .global asm_productoEscalar32
 .global asm_productoEscalar16
 .global asm_productoEscalar12
-
+.global asm_filtroVentana10
 
 .global asm_max
 .global asm_downsampleM
@@ -138,6 +138,19 @@
 		bne .asm_productoEscalar12_for	@ salto a la etiqueta si el resultado no es 0.
 		pop {r4-r5}						@ restauro el valor de r4.
 		bx lr							@ salgo de la función.
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@ void asm_filtroVentana10(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitudVectorIn);
+@
+@ Parametros recibidos:
+@   r0: vectorIn
+@   r1: vectorOut
+@	r2: longitudVectorIn
+@
+.thumb_func
+	asm_filtroVentana10:
+		bx lr					@ salgo de la función.
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
