@@ -10,7 +10,7 @@
 .global asm_productoEscalar16
 .global asm_productoEscalar12
 .global asm_filtroVentana10
-
+.global asm_pack32to16
 .global asm_max
 .global asm_downsampleM
 .global asm_invertir
@@ -198,6 +198,29 @@
 
 		pop {r4-r9}								@ restauro el valor de r4, r5, r6, r7, r8 y r9.
 		bx lr									@ salgo de la función.
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@ void asm_pack32to16(int32_t * vectorIn, int16_t *vectorOut, uint32_t longitud);
+@
+@ Parametros recibidos:
+@   r0: vectorIn
+@   r1: vectorOut
+@	r2: longitud
+@
+@ Registros usados:
+@ 	r3: promedio.
+@	r4: n_filtro.
+@	r5: sumatoria.
+@ 	r6: dirección de memoria del final de vectorIn.
+@ 	r7: dirección de memoria inicial del vectorIn.
+@	r8: iterador sobre n_filtro.
+@	r9: aux
+@
+.thumb_func
+	asm_pack32to16:
+
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

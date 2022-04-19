@@ -146,9 +146,12 @@ void filtroVentana10(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitu
 
 
 /* Ejercicio 6 */
-void pack32to16 (int32_t * vectorIn, int16_t *vectorOut, uint32_t longitud)
+void pack32to16(int32_t * vectorIn, int16_t *vectorOut, uint32_t longitud)
 {
-
+	for(uint32_t i = 0; i < longitud; i++)
+	{
+		vectorOut[i] = (vectorIn[i] >> 16);
+	}
 }
 
 /* Ejercicio 7 */
@@ -432,6 +435,32 @@ int main(void)
 
   }
   /* FIN PRUEBA EJERCICIO 5 */
+
+  /* INICIO PRUEBA EJERCICIO 6 */
+  {
+
+
+
+  int32_t vectorIn32[6] = {-2147483648, -5000000, 0, 2000, 1000000, 2147483647};
+  int16_t vectorOut16[6];
+
+
+  DWT->CYCCNT = 0;
+
+  pack32to16(vectorIn32, vectorOut16, 6);
+
+  c = DWT->CYCCNT;
+/*
+  uint16_t asm_vectorOut16[7];
+
+  DWT->CYCCNT = 0;
+
+  asm_pack32to16(vectorIn32, asm_vectorOut16, 7);
+
+  c = DWT->CYCCNT;*/
+
+  }
+  /* FIN PRUEBA EJERCICIO 6 */
 
   /* INICIO PRUEBA EJERCICIO 7 */
   {
