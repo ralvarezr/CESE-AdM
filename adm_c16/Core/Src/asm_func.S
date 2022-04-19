@@ -210,17 +210,19 @@
 @	r2: longitud
 @
 @ Registros usados:
-@ 	r3: promedio.
-@	r4: n_filtro.
-@	r5: sumatoria.
-@ 	r6: dirección de memoria del final de vectorIn.
-@ 	r7: dirección de memoria inicial del vectorIn.
-@	r8: iterador sobre n_filtro.
-@	r9: aux
+@ 	r3: aux
 @
 .thumb_func
 	asm_pack32to16:
-
+		push {r4}						@ guardo r4 en el stack para usarlo.
+	.asm_pack32to16_loop:
+		ldr r4, [r0], #4				@ r4 = *r0; r0 += 4;
+		asr r3, r4, 16					@ r3 = r4 >> 16;
+		strh r3, [r1], #2				@ *r1 = r3; r1 += 2;
+		subs r2, #1						@ r2 -= 1;
+		bne .asm_pack32to16_loop		@ salto a la etiqueta si el resultado no es 0.
+		pop {r4}						@ restauro el valor de r4.
+		bx lr							@ salgo de la función.
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

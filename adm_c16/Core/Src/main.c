@@ -439,8 +439,6 @@ int main(void)
   /* INICIO PRUEBA EJERCICIO 6 */
   {
 
-
-
   int32_t vectorIn32[6] = {-2147483648, -5000000, 0, 2000, 1000000, 2147483647};
   int16_t vectorOut16[6];
 
@@ -450,14 +448,14 @@ int main(void)
   pack32to16(vectorIn32, vectorOut16, 6);
 
   c = DWT->CYCCNT;
-/*
-  uint16_t asm_vectorOut16[7];
+
+  int16_t asm_vectorOut16[6];
 
   DWT->CYCCNT = 0;
 
-  asm_pack32to16(vectorIn32, asm_vectorOut16, 7);
+  asm_pack32to16(vectorIn32, asm_vectorOut16, 6);
 
-  c = DWT->CYCCNT;*/
+  c = DWT->CYCCNT;
 
   }
   /* FIN PRUEBA EJERCICIO 6 */
